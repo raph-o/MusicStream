@@ -16,5 +16,4 @@ public interface SongMapper {
     List<Song> toSongs(List<SongEntity> songEntities);
 
     SongEntity toSongEntity(Song song);
-    List<SongEntity> toSongEntities(List<Song> songs);
 }
