@@ -35,6 +35,8 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("org.mockito:mockito-core:5.2.0")
 }
 
 tasks.withType<Test> {
