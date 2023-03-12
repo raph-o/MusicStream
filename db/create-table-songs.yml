@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: name
-                  type: varchar(255)
+                  type: varchar(50)
               - column:
                   name: author
                   type: varchar(50)

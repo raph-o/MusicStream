@@ -9,5 +9,4 @@ public class MusicStreamApplication {
     public static void main(String[] args) {
         SpringApplication.run(MusicStreamApplication.class, args);
     }
-
 }
