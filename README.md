@@ -20,9 +20,10 @@ This project is an attempt to make a streaming music service.
 
 You will need [docker](https://www.docker.com/products/docker-desktop/) to run it.
 
-In a command prompt, run the following (you must be in the project's folder):
+In a command prompt, run the followings (you must be in the project's folder):
 
 ```bash
+./gradlew build
 docker compose up
 ```
 
