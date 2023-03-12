@@ -7,7 +7,7 @@ This project is an attempt to make a streaming music service.
 ### Backend
 
 * Spring Boot
-* Hibernate and Jpa as ORM (MySQL) and liquibase for the changelogs
+* Hibernate and Jpa as ORM (MariaDB) and liquibase for the changelogs
 * Lombok
 * Mapstruct
 * Junit and Mockito for the tests
