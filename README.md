@@ -32,7 +32,7 @@ The application will be available on port 8081. To stop it, in command prompt:
 docker compose stop
 ```
 
-Or just press CTRL-C in the command prompt used to up the container (you can also stop it docker's gui).
+Or just press CTRL-C in the command prompt used to start the container (you can also stop it in docker's gui).
 
 ## What's next
 
