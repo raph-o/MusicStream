@@ -14,7 +14,7 @@ This project is an attempt to make a streaming music service.
 
 ### Frontend
 
-* Basic Html, css and js
+* Html, css and js
 
 ## Installation
 
