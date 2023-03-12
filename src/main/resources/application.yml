@@ -10,9 +10,7 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/musicstream
+    url: jdbc:mariadb://${MARIADB_HOST:localhost}:3306/musicstream
     username: root
     password:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  liquibase:
-    change-log: classPath:db/changelog.yml
+    driver-class-name: org.mariadb.jdbc.Driver

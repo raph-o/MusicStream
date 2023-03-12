@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "fr.raph"
-version = "0.0.1-SNAPSHOT"
+version = "1.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -21,10 +21,9 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
-    implementation("com.mysql:mysql-connector-j:8.0.32")
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.1.2")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.liquibase:liquibase-core:4.20.0")
     implementation("org.yaml:snakeyaml:2.0")
 
     compileOnly("org.projectlombok:lombok")

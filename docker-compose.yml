@@ -1,0 +1,34 @@
+services:
+  web:
+    container_name: web
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      wait-for-db:
+          condition: service_completed_successfully
+    environment:
+      - MARIADB_HOST=mariadb
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+      - MARIADB_DATABASE=musicstream
+  liquibase:
+    container_name: liquibase
+    image: liquibase/liquibase:latest
+    command: --changeLogFile=changelog.yml --url=jdbc:mariadb://mariadb:3306/musicstream --username=root update
+    volumes:
+      - ./db:/liquibase/changelog
+    depends_on:
+      wait-for-db:
+        condition: service_completed_successfully
+  wait-for-db:
+    container_name: wait-for-db
+    image: atkrad/wait4x:latest
+    depends_on:
+      - mariadb
+    command: tcp mariadb:3306

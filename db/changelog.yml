@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: ./create-table-songs.yml
