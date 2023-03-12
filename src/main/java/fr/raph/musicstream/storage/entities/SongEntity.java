@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class SongEntity {
 
-    public SongEntity(String name, String description) {
+    public SongEntity(String name, String author, byte[] data) {
         this.name = name;
-        this.description = description;
+        this.author = author;
+        this.data = data;
     }
 
     @Id
@@ -19,5 +20,8 @@ public class SongEntity {
     private int id;
 
     private String name;
-    private String description;
+    private String author;
+
+    @Lob
+    private byte[] data;
 }

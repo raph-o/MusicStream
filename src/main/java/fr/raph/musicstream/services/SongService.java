@@ -20,7 +20,6 @@ public class SongService {
 
     public Song add(Song song) {
         if (songRepository.findByName(song.getName()).isPresent()) { throw new ObjectAlreadyExistException("Song", song.getName()); }
-
         SongEntity songEntity = SONG_MAPPER.toSongEntity(song);
         SongEntity savedSongEntity = songRepository.save(songEntity);
         return SONG_MAPPER.toSong(savedSongEntity);
@@ -42,8 +41,9 @@ public class SongService {
         return SONG_MAPPER.toSongs(songRepository.findAll());
     }
 
-    public Song get(String name) {
+    public byte[] get(String name) {
         SongEntity songEntity = songRepository.findByName(name).orElseThrow(() -> new ObjectNotFoundException("Song", name));
-        return SONG_MAPPER.toSong(songEntity);
+        Song song = SONG_MAPPER.toSong(songEntity);
+        return song.getData();
     }
 }

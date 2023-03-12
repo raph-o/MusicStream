@@ -20,7 +20,7 @@ class SongServiceTest {
     private final SongRepository songRepository;
     private final SongService songService;
     private final String name = "test song";
-    private final String description = "test description";
+    private final String author = "test author";
 
     SongServiceTest() {
         this.songRepository = mock(SongRepository.class);
@@ -29,24 +29,24 @@ class SongServiceTest {
 
     @Test
     void should_add_song() {
-        SongEntity songToReturn = new SongEntity(name, description);
+        SongEntity songToReturn = new SongEntity(name, author, null);
         BDDMockito.given(songRepository.save(any())).willReturn(songToReturn);
 
-        Song songToCreate = new Song(name, description);
+        Song songToCreate = new Song(name, author, null);
         Song createdSong = songService.add(songToCreate);
 
         Assertions.assertThat(createdSong)
-                .extracting(Song::getName, Song::getDescription)
-                .contains(songToReturn.getName(), songToReturn.getDescription());
+                .extracting(Song::getName, Song::getAuthor)
+                .contains(songToReturn.getName(), songToReturn.getAuthor());
         BDDMockito.then(songRepository).should(times(1)).save(any());
     }
 
     @Test
     void should_throw_ObjectAlreadyExistException_when_adding_existent_song() {
-        SongEntity existingSong = new SongEntity(name, description);
+        SongEntity existingSong = new SongEntity(name, author, null);
         BDDMockito.given(songRepository.findByName(any())).willReturn(Optional.of(existingSong));
 
-        Song songToAdd = new Song(name, description);
+        Song songToAdd = new Song(name, author, null);
 
         Assertions.assertThatThrownBy(() -> songService.add(songToAdd))
                 .isInstanceOf(ObjectAlreadyExistException.class)
@@ -56,7 +56,7 @@ class SongServiceTest {
 
     @Test
     void should_remove_song() {
-        SongEntity songToReturn = new SongEntity(name, description);
+        SongEntity songToReturn = new SongEntity(name, author, null);
         BDDMockito.given(songRepository.findByName(any())).willReturn(Optional.of(songToReturn));
 
         songService.remove(name);
@@ -75,24 +75,24 @@ class SongServiceTest {
     @Test
     void should_update_song() {
         String updated = "updated ";
-        SongEntity songToReturn = new SongEntity(updated + name, updated + description);
+        SongEntity songToReturn = new SongEntity(updated + name, updated + author, null);
         doNothing().when(songRepository).deleteByName(any());
         BDDMockito.given(songRepository.save(any())).willReturn(songToReturn);
 
-        Song songUpdated = new Song(updated + name, updated + description);
+        Song songUpdated = new Song(updated + name, updated + author, null);
         Song updatedSong = songService.update(name, songUpdated);
 
         Assertions.assertThat(updatedSong)
-                .extracting(Song::getName, Song::getDescription)
-                .contains(songToReturn.getName(), songToReturn.getDescription());
+                .extracting(Song::getName, Song::getAuthor)
+                .contains(songToReturn.getName(), songToReturn.getAuthor());
         BDDMockito.then(songRepository).should(times(1)).deleteByName(any());
         BDDMockito.then(songRepository).should(times(1)).save(any());
     }
 
     @Test
     void should_get_songs() {
-        SongEntity songEntity1 = new SongEntity(name + " 1", description + " 1");
-        SongEntity songEntity2 = new SongEntity(name + " 2", description + " 2");
+        SongEntity songEntity1 = new SongEntity(name + " 1", author + " 1", null);
+        SongEntity songEntity2 = new SongEntity(name + " 2", author + " 2", null);
         List<SongEntity> songsToReturn = List.of(songEntity1, songEntity2);
         BDDMockito.given(songRepository.findAll()).willReturn(songsToReturn);
 
@@ -106,14 +106,12 @@ class SongServiceTest {
 
     @Test
     void should_get_song() {
-        SongEntity songToReturn = new SongEntity(name, description);
+        SongEntity songToReturn = new SongEntity(name, author, null);
         BDDMockito.given(songRepository.findByName(any())).willReturn(Optional.of(songToReturn));
 
-        Song song = songService.get(name);
+        byte[] data = songService.get(name);
 
-        Assertions.assertThat(song)
-                .extracting(Song::getName, Song::getDescription)
-                .contains(songToReturn.getName(), songToReturn.getDescription());
+        Assertions.assertThat(data).isEqualTo(songToReturn.getData());
         BDDMockito.then(songRepository).should(times(1)).findByName(any());
     }
 

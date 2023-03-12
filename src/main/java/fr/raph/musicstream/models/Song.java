@@ -8,5 +8,6 @@ import lombok.Data;
 public class Song {
 
     private String name;
-    private String description;
+    private String author;
+    private byte[] data;
 }
