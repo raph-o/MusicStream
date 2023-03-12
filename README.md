@@ -7,22 +7,23 @@ This project is an attempt to make a streaming music service.
 ### Backend
 
 * Spring Boot
-* Hibernate and Jpa as ORM (MySQL) and liquibase for the changelogs
+* Hibernate and Jpa as ORM (MariaDB) and liquibase for the changelogs
 * Lombok
 * Mapstruct
 * Junit and Mockito for the tests
 
 ### Frontend
 
-* Basic Html, css and js
+* Html, css and js
 
 ## Installation
 
 You will need [docker](https://www.docker.com/products/docker-desktop/) to run it.
 
-In a command prompt, run the following (you must be in the project's folder):
+In a command prompt, run the followings (you must be in the project's folder):
 
 ```bash
+./gradlew build
 docker compose up
 ```
 
@@ -32,7 +33,7 @@ The application will be available on port 8081. To stop it, in command prompt:
 docker compose stop
 ```
 
-Or just press CTRL-C in the command prompt used to up the container (you can also stop it docker's gui).
+Or just press CTRL-C in the command prompt used to start the container (you can also stop it in docker's gui).
 
 ## What's next
 
