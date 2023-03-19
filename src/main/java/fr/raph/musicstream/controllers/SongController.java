@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/songs")
 @AllArgsConstructor
+@CrossOrigin
 public class SongController {
 
     private SongService songService;

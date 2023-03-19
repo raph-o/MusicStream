@@ -1,6 +1,6 @@
 services:
-  web:
-    container_name: web
+  api:
+    container_name: api
     build: .
     ports:
       - "8081:8081"
